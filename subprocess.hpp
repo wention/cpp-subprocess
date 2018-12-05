@@ -1202,6 +1202,7 @@ inline void Popen::execute_process() noexcept(false)
         throw CalledProcessError(err_buf);
       }
     } catch (CalledProcessError& exp) {
+      stream_.cleanup_fds();
       throw exp;
     } catch (std::exception& exp) {
       stream_.cleanup_fds();
